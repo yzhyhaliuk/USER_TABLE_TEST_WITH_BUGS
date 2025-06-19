@@ -1,6 +1,7 @@
 # Users Table App
 
-[Live Demo](users-table-redux-ts.vercel.app)
+[Live Demo](https://users-table-redux-ts.vercel.app/)
+
 [GitHub Repo](https://github.com/yzhyhaliuk/USERS_TABLE_REDUX_TS)
 
 Hi there!

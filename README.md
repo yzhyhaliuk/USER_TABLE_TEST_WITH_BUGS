@@ -1,54 +1,18 @@
-# React + TypeScript + Vite
+# Users Table App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live Demo](users-table-redux-ts.vercel.app)
+[GitHub Repo](https://github.com/yzhyhaliuk/USERS_TABLE_REDUX_TS)
 
-Currently, two official plugins are available:
+Hi there!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is my implementation of a user table with filters for all columns, built as part of a frontend challenge.
 
-## Expanding the ESLint configuration
+I used React with Redux Toolkit and TypeScript to keep the code clean, type-safe, and modern. Styling is done with SCSS modules to keep things organized and responsive.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+I spent some extra time on custom empty state handling and input validation to make sure users don’t see empty rows and get helpful feedback if they type only spaces.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+One thing that took the most time was getting the typings right. It was definitely a good investment — clean, error-free code matters a lot! Redux Toolkit made managing state much easier, but planning types carefully was key.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The design is fully responsive — it looks good and works smoothly on phones, tablets, and desktops alike.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Feel free to explore the code, and I’d be happy to hear any feedback!

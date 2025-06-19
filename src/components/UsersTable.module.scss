@@ -1,0 +1,163 @@
+@import "../utils/mixins.scss";
+@import "../utils//variables.scss";
+
+.wrapper {
+  width: 100%;
+  padding: 2rem;
+  background-color: $background-color;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  animation: fading 0.5s ease-in forwards;
+  opacity: 0;
+}
+
+@keyframes fading {
+  to {
+    opacity: 1;
+  }
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $primary-color;
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: sliding 0.6s ease-in-out;
+}
+
+@keyframes sliding {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.input {
+  padding: 0.5rem 1rem;
+  border: 2px solid $primary-color;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: $white;
+  color: $text-color;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba($primary-color, 0.5);
+  }
+
+  &__error {
+    border-color: red;
+  }
+}
+
+.filterItem {
+  display: flex;
+  height: 3rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.errorText {
+  color: red;
+  font-size: 0.6rem;
+  margin-top: 0.05rem;
+  display: block;
+}
+
+.empty {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+
+  &__text {
+    font-size: 1.2rem;
+    color: #666;
+    background-color: #fdf7ff;
+    padding: 2rem;
+    margin-top: 2rem;
+    border: 2px dashed #a78bfa;
+    border-radius: 12px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 15px rgba(167, 139, 250, 0.1);
+  }
+
+  &__img {
+    width: 220px;
+    height: auto;
+    opacity: 0.9;
+    animation: floating 3s ease-in-out infinite;
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.tableWrapper {
+  width: 100%;
+
+  @include mobile {
+    overflow-x: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+
+  @include tablet {
+    overflow-x: visible;
+    border: none;
+    border-radius: 0;
+  }
+}
+
+.table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  background-color: $white;
+  box-shadow: 0 0 10px rgba($primary-color, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__th, &__td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  &__th {
+    background-color: $primary-color;
+    color: $white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.highlightedRow {
+  background-color: $table-highlight;
+}

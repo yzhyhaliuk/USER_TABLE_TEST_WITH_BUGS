@@ -1,0 +1,11 @@
+@mixin mobile{
+  @media (min-width: $mobile-min-width) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $tablet-min-width) {
+    @content;
+  }
+}

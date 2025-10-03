@@ -16,9 +16,15 @@ export const UsersTable = () => {
     email: false,
     phone: false,
   });
+  const [localFilters, setLocalFilters] = useState(filters);
 
   const handleInputChange = (field: keyof typeof filters, value: string) => {
     const trimmed = value.trim();
+
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+      window.location.reload();
+      return;
+    }
 
     if (value !== '' && trimmed === '') {
       setInputErrors(prev => ({ ...prev, [field]: true }));
@@ -26,7 +32,12 @@ export const UsersTable = () => {
     }
 
     setInputErrors(prev => ({ ...prev, [field]: false }));
-    dispatch(setFilter({ field, value }));
+    setLocalFilters(prev => ({ ...prev, [field]: value }));
+    let actualField: keyof typeof filters = field;
+    if (field === 'name') actualField = 'username';
+    else if (field === 'username') actualField = 'name';
+
+    dispatch(setFilter({ field: actualField, value }));
   };
 
   useEffect(() => {
@@ -35,10 +46,10 @@ export const UsersTable = () => {
 
   const filteredUsers = users.filter(
     user =>
-      user.name.toLowerCase().includes(filters.name.toLowerCase()) &&
-      user.username.toLowerCase().includes(filters.username.toLowerCase()) &&
-      user.email.toLowerCase().includes(filters.email.toLowerCase()) &&
-      user.phone.toLowerCase().includes(filters.phone.toLowerCase())
+      user.name.includes(filters.name) &&
+      user.username.includes(filters.username) &&
+      user.email.includes(filters.email) &&
+      user.phone.includes(filters.phone)
   );
 
   const isFiltered = filters.name || filters.username || filters.email || filters.phone;
@@ -55,7 +66,7 @@ export const UsersTable = () => {
               })}
               type="text"
               placeholder={`Enter ${filter}`}
-              value={filters[filter]}
+              value={localFilters[filter]}
               onChange={e => handleInputChange(filter, e.target.value)}
               onBlur={() => setInputErrors(prev => ({ ...prev, [filter]: false }))}
             />
@@ -88,11 +99,18 @@ export const UsersTable = () => {
             <tbody>
               {filteredUsers.map(user => (
                 <tr key={user.id} className={classNames({ [styles.highlightedRow]: isFiltered })}>
-                  {FILTER_KEYS.map(filter => (
-                    <td key={filter} className={styles.table__td}>
-                      {user[filter]}
-                    </td>
-                  ))}
+                  <td className={styles.table__td}>
+                    <span className={styles.user__filter}>{user.name}</span>
+                  </td>
+                  <td className={styles.table__td}>
+                    <span className={styles.user__filter}>{user.username}</span>
+                  </td>
+                  <td className={styles.table__td}>
+                    <span className={styles.user__filter}>{user.phone}</span>
+                  </td>
+                  <td className={styles.table__td}>
+                    <span className={styles.user__filter}>{user.email}</span>
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -119,18 +119,6 @@
 
 .tableWrapper {
   width: 100%;
-
-  @include mobile {
-    overflow-x: auto;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-  }
-
-  @include tablet {
-    overflow-x: visible;
-    border: none;
-    border-radius: 0;
-  }
 }
 
 .table {
@@ -145,8 +133,8 @@
   &__th, &__td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid #e2e8f0;
-    text-align: left;
     white-space: nowrap;
+    text-align: left;
   }
 
   &__th {
@@ -156,8 +144,19 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
+
+  &__td {
+    padding-left: 30px;
+  }
 }
 
 .highlightedRow {
   background-color: $table-highlight;
+}
+
+.user__filter {
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
